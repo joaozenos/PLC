@@ -83,3 +83,39 @@ listFib n x
   | mod (fib (x)) 2 == 0 = fib(x):listFib (n-1) (x+1)
   | otherwise = listFib(n) (x+1) 
 
+--Quick Sort
+
+quicksort [Int] -> [Int]
+quicksort [] = []
+quicksort (x xs) = quicksort (filtraInf xs x) ++ [x] ++ quicksort(filtraSup xs x)
+
+filtraInf :: [Int] -> Int -> [Int]
+filtraInf [] n = []
+filtraInf (x xs) n
+ | x < n = x: filtraInf xs n
+ | otherwsise = filtraInf xs n
+
+filtraSup :: [Int] -> Int -> [Int]
+filtraSup [] n = []
+filtraSup (x xs) n
+ | x > n = x: filtraSup xs n
+ | otherwsise = filtraSup xs n
+
+
+-- Sqr Root
+oneRoot :: Float -> Float -> Float -> Float
+oneRoot a b c = -b/(2.0*a)
+
+twoRoots :: Float -> Float -> Float -> (Float, Float)
+twoRoots a b c = (d-e, d+e)
+  where
+  d = -b/(2.0*a)
+  e = sqrt(b^2-4.0*a*c)/(2.0*a)
+
+roots :: (Float, Float, Float) -> String
+roots (a,b,c)
+  | b^2 == 4.0*a*c = show(oneRoot a b c)
+  | b^2 > 4.0*a*c = show f ++ " " ++ show s
+  | otherwise = "no roots"
+  where
+  (f,s) = twoRoots a b c
